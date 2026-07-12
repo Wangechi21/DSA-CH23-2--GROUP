@@ -1,5 +1,6 @@
 # inverted_index.py
-# Core inverted index using Hash Map
+#ghghj
+# Core inted index using Hash Map
 # Data structure: Hash Table mapping term -> posting list
 
 from collections import defaultdict
@@ -8,7 +9,7 @@ import math
 class InvertedIndex:
     def __init__(self, document_manager):
         self.doc_manager = document_manager
-        # Hash map: term -> {doc_id: term_frequency}
+        # Hash map: term -> {doc_id: term_frequency}# Core inted index using Hash Map
         self.index = defaultdict(lambda: defaultdict(int))
         # Document frequency: term -> number of docs containing it
         self.document_frequency = defaultdict(int)
@@ -16,6 +17,7 @@ class InvertedIndex:
     def add_document_to_index(self, doc_id, content):
         """
         Add a document to the inverted index.
+tytgh
         Tokenizes content and builds posting lists.
         """
         terms = self._tokenize(content)
@@ -43,8 +45,8 @@ class InvertedIndex:
         Returns list of (doc_id, term_frequency) for docs containing term.
         """
         term = term.lower()
-        if term in self.index:
-            return list(self.index[term].items())
+     if term in self.index:
+     return list(self.index[term].items())
         return []
     
     def get_posting_list(self, term):
