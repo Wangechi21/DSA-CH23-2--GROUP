@@ -1,7 +1,3 @@
-# document_manager.py
-# Document storage and retrieval using Hash Map
-# Data structure: Hash Table for O(1) document lookup
-
 class DocumentManager:
     def __init__(self):
         # Hash map: doc_id -> document object

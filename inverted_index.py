@@ -1,15 +1,10 @@
-# inverted_index.py
-#ghghj
-# Core inted index using Hash Map
-# Data structure: Hash Table mapping term -> posting list
-
 from collections import defaultdict
 import math
-
+import re
 class InvertedIndex:
     def __init__(self, document_manager):
         self.doc_manager = document_manager
-        # Hash map: term -> {doc_id: term_frequency}# Core inted index using Hash Map
+        # Hash map: term -> {doc_id: term_frequency}
         self.index = defaultdict(lambda: defaultdict(int))
         # Document frequency: term -> number of docs containing it
         self.document_frequency = defaultdict(int)
@@ -17,7 +12,6 @@ class InvertedIndex:
     def add_document_to_index(self, doc_id, content):
         """
         Add a document to the inverted index.
-tytgh
         Tokenizes content and builds posting lists.
         """
         terms = self._tokenize(content)
@@ -34,7 +28,6 @@ tytgh
     
     def _tokenize(self, text):
         """Simple tokenizer: lowercase, split on whitespace, remove punctuation."""
-        import re
         # Convert to lowercase and split on non-alphanumeric
         words = re.findall(r'\b[a-z0-9]+\b', text.lower())
         return words
@@ -45,8 +38,8 @@ tytgh
         Returns list of (doc_id, term_frequency) for docs containing term.
         """
         term = term.lower()
-     if term in self.index:
-     return list(self.index[term].items())
+        if term in self.index:
+            return list(self.index[term].items())
         return []
     
     def get_posting_list(self, term):
@@ -96,3 +89,11 @@ tytgh
                 if self.document_frequency[term] == 0:
                     del self.index[term]
                     del self.document_frequency[term]
+    
+    def get_index_stats(self):
+        """Return statistics about the inverted index."""
+        return {
+            'total_terms': self.get_term_count(),
+            'total_documents': self.doc_manager.get_document_count(),
+            'total_postings': sum(len(posting) for posting in self.index.values())
+        }

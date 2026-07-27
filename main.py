@@ -1,7 +1,3 @@
-# main.py
-# Main entry point for Distributed Search Engine - Theme D5
-# Integrates all components: Hash Map, Queue, Stack, Heap, Distributed Shards
-
 import sys
 
 class DistributedSearchEngine:
@@ -52,7 +48,7 @@ class DistributedSearchEngine:
         if distributed:
             results = self.aggregator.distributed_search(query, top_k)
         else:
-            results = self.aggregator.search_single_shard(query, shard_id=0, top_k)
+            results = self.aggregator.search_single_shard(query, shard_id=0, top_k=top_k)
         
         # Save to history
         self.history.push_query(query, results)
